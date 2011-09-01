@@ -67,6 +67,7 @@ This is how I began, starting with a new Rails project and the Angular.js seed p
 
 Then, to configure unit specs:
 
-(note that the configuration steps have already been performed in the rails project
-* modify the config/js... configuration files
+(Note that the configuration steps have already been performed in the rails project.)
+
+* modify the config/js... configuration files to match the project hierarchy
 * modify js_script/test.sh and js_script/test-server.sh so that the path to the jar is ../js_spec instead of ../test
