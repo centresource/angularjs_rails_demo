@@ -15,7 +15,7 @@ describe "SelectedPhotos", :js => true do
       page.should have_selector(".selected_photo")
       find(".delete").click
       # delay so the click has time to not only return, but also update bound data
-      sleep(0.1)
+      sleep(0.2)
       page.should_not have_selector(".selected_photo")
       SelectedPhoto.count.should == 0
     end

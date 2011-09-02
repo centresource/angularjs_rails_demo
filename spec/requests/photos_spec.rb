@@ -26,7 +26,7 @@ describe "Photos", :js => true do
       SelectedPhoto.count.should == 0
       find(".photo").click
       # delay so the click has time to not only return, but also update bound data
-      sleep(0.1)
+      sleep(0.2)
       SelectedPhoto.count.should == 1
     end
 
