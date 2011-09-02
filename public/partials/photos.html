@@ -1,3 +1,5 @@
+<h1>The {{gallery.gallery.title}} Gallery of {{photographer.photographer.name}}</h1>
+
 <div id="selected_frame">
   <div id="selected_photos">
     <!-- double object names because rails uses the json root to scope params. TODO: figure out how to eliminate the need to do this in angular -->
@@ -20,5 +22,6 @@
       </div>
     </div>
     <div id="next">&rsaquo;</div>
+    <span class="caption">Click a photo to add it to your collection</span>
   </div>
 </div>

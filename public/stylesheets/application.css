@@ -16,6 +16,10 @@ body {
 img {
   border-style: none;
 }
+h1 {
+  color: #fff;
+  margin: 15px 50px 0;
+}
 #outer_picture_frame {
   padding-right: 220px;
   padding-top: 100px;

@@ -56,6 +56,9 @@ function GalleriesCtrl(Galleries, Photographers) {
 function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
   var self = this;
 
+  self.gallery = Galleries.get({photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id});
+  self.photographer = Photographers.get({photographer_id: this.params.photographer_id});
+
   Photos.index({photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id}, function(photos) {
     self.photos = photos;
     forceRender(function() {
@@ -67,8 +70,6 @@ function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
                           prev: '#prev'});
     });
   });
-  self.gallery = Galleries.get({photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id});
-  self.photographer = Photographers.get({photographer_id: this.params.photographer_id});
   self.selected_photos = SelectedPhotos.index();
 
   $('#photos .photo').live('click', function() {

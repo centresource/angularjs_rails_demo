@@ -1,4 +1,4 @@
-<h1>{{photographer.name}}</h1>
+<h1>Galleries of {{photographer.photographer.name}}</h1>
 <ul id="galleries">
   <li class="gallery" ng:repeat="gallery in galleries">
     <!-- double object names because rails uses the json root to scope params. TODO: figure out how to eliminate the need to do this in angular -->
