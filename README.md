@@ -19,9 +19,9 @@ This demo includes a fully working Rails app integrated with Angular.js. Note th
 Basic Approach
 ================
 
-ApplicationController intercepts all html traffic and uses it to render layout/dynamic.
+ApplicationController intercepts all html traffic and uses it to render 'layout/dynamic.html.erb'
 
-All json traffic reaches its intended controller/action and renders the object for Angular.js to process.
+All json traffic reaches its intended controller/action and renders the object for Angular.js to process
 
 
 Running the Unit Specs
