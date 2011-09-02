@@ -17,9 +17,9 @@ This demo includes a fully working Rails app integrated with Angular.js. Note th
 
 
 Basic Approach
-================
+==============
 
-ApplicationController intercepts all html traffic and uses it to render 'layout/dynamic.html.erb'
+ApplicationController intercepts all html traffic, rendering 'layout/dynamic.html.erb'
 
 All json traffic reaches its intended controller/action and renders the object for Angular.js to process
 
@@ -63,7 +63,7 @@ This is how I began, starting with a new Rails project and the Angular.js seed p
     angular_demo $ mv ../angular-seed/app/partials public/javascripts
     angular_demo $ mv ../angular-seed/test js_spec # or js_test if you prefer a test dir
     angular_demo $ mv ../angular-seed/scripts js_script
-    angular_demo$ mv ../angular-seed/config/* config/
+    angular_demo $ mv ../angular-seed/config/* config/
 
 Then, to configure unit specs:
 
