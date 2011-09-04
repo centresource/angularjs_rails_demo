@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
     render('layouts/dynamic') if request.format == Mime::HTML
   end
 
+  def handle_unverified_request
+    reset_session
+    render "#{Rails.root}/public/500.html", :status => 500, :layout => nil
+  end
+
 end

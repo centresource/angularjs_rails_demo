@@ -28,6 +28,13 @@ function PhotoGalleryCtrl($route, $xhr) {
   $xhr.defaults.headers.post['Content-Type'] = 'application/json'
   $xhr.defaults.headers.put['Content-Type'] = 'application/json'
 
+  // assumes the presence of jQuery
+  var token = $("meta[name='csrf-token']").attr("content");
+  $xhr.defaults.headers.post['X-CSRF-Token'] = token;
+  $xhr.defaults.headers.put['X-CSRF-Token'] = token;
+  $xhr.defaults.headers.delete['X-CSRF-Token'] = token;
+
+
   $route.when('/photographers',
       {template: 'partials/photographers.html', controller: PhotographersCtrl});
 

@@ -6,7 +6,8 @@ describe('AngularDemo controllers', function() {
     // mock $ because we don't have a DOM in unit tests
     // (loading jQuery resulted in Uncaught RangeError: Maximum call stack size exceeded)
     $ = function() {
-        return { live: function() {} };
+        return { live: function() {},
+                 attr: function() {} };
     };
     scope = angular.scope();
     $browser = scope.$service('$browser');
