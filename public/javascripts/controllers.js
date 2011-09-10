@@ -66,6 +66,16 @@ function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
   self.gallery = Galleries.get({photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id});
   self.photographer = Photographers.get({photographer_id: this.params.photographer_id});
 
+  var addWatchersToSelectedPhoto = function(selected_photo) {
+    $('#selected_photo_' + String(selected_photo.selected_photo.id) + ' input').live('blur', function() {
+      selected_photo.$update({ selected_photo_id: selected_photo.selected_photo.id });
+    });
+    $('#selected_photo_' + String(selected_photo.selected_photo.id) + ' .delete').live('click', function() {
+      angular.Array.remove(self.selected_photos, selected_photo);
+      selected_photo.$destroy({selected_photo_id: selected_photo.selected_photo.id});
+    });
+  }
+
   Photos.index({photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id}, function(photos) {
     self.photos = photos;
     forceRender(function() {
@@ -76,26 +86,26 @@ function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
                           next: '#next',
                           prev: '#prev'});
     });
-  });
-  self.selected_photos = SelectedPhotos.index();
 
-  $('#photos .photo').live('click', function() {
-    var photo_id = $(this).attr('id');
-    var selected_photo = new SelectedPhotos({ selected_photo: {
-                                                               photo_id: photo_id
-                                                              }
-                                             });
-    selected_photo.$create();
-    self.selected_photos.push(selected_photo);
+    for (var i = 0; i < photos.length; i++) {
+      var photo = photos[i];
+      $('#photo_' + String(photo.photo.id)).live('click', function() {
+        var selected_photo = new SelectedPhotos({ selected_photo: {
+                                                                    photo_id: photo.photo.id
+                                                                  }
+                                                 });
+        selected_photo.$create();
+        self.selected_photos.push(selected_photo);
+        addWatchersToSelectedPhoto(selected_photo);
+      });
+    }
   });
 
-  $('#selected_photos .selected_photo input').live('blur', function() {
-    var selected_photo_id = $(this).parent().attr('id');
-    for (var i = 0; i < self.selected_photos.length; i++) {
-        var selected_photo = self.selected_photos[i];
-        if (String(selected_photo.selected_photo.id) == selected_photo_id){
-            selected_photo.$update({ selected_photo_id: selected_photo.selected_photo.id });
-        }
+  SelectedPhotos.index({}, function(selected_photos) {
+    self.selected_photos = selected_photos;
+
+    for (var i = 0; i < selected_photos.length; i++) {
+      addWatchersToSelectedPhoto(selected_photos[i]);
     }
   });
 
