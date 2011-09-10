@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title>Angular Rails Demo</title>
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag "application" %>
   <%= csrf_meta_tag %>
 </head>
 <body ng:controller="PhotoGalleryCtrl">
 
   <ng:view></ng:view>
 
-  <script src="lib/angular/angular.js" ng:autobind></script>
-  <%= javascript_include_tag "services", "controllers", "filters", "widgets", "jquery/jquery.min", "jquery/jquery.cycle", "application" -%>
+  <%= javascript_include_tag "angular.js#autobind", "services", "controllers", "filters", "widgets", "jquery/jquery.min", "jquery/jquery.cycle", "application" -%>
 </body>
 </html>

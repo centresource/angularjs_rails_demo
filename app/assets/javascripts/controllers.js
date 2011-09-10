@@ -66,13 +66,25 @@ function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
   self.gallery = Galleries.get({photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id});
   self.photographer = Photographers.get({photographer_id: this.params.photographer_id});
 
-  var addWatchersToSelectedPhoto = function(selected_photo) {
-    $('#selected_photo_' + String(selected_photo.selected_photo.id) + ' input').live('blur', function() {
-      selected_photo.$update({ selected_photo_id: selected_photo.selected_photo.id });
+  var addWatcherToPhoto = function(photo) {
+    $('#photo_' + String(photo.id)).live('click', function() {
+      var selected_photo = new SelectedPhotos({ selected_photo: {
+                                                                  photo_id: photo.id
+                                                                }
+                                               });
+      selected_photo.$create(function() {
+        self.selected_photos.push(selected_photo);
+        addWatchersToSelectedPhoto(selected_photo);
+      });
     });
-    $('#selected_photo_' + String(selected_photo.selected_photo.id) + ' .delete').live('click', function() {
+  }
+  var addWatchersToSelectedPhoto = function(selected_photo) {
+    $('#selected_photo_' + String(selected_photo.id) + ' input').live('blur', function() {
+      selected_photo.$update({ selected_photo_id: selected_photo.id });
+    });
+    $('#selected_photo_' + String(selected_photo.id) + ' .delete').live('click', function() {
       angular.Array.remove(self.selected_photos, selected_photo);
-      selected_photo.$destroy({selected_photo_id: selected_photo.selected_photo.id});
+      selected_photo.$destroy({selected_photo_id: selected_photo.id});
     });
   }
 
@@ -88,16 +100,7 @@ function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
     });
 
     for (var i = 0; i < photos.length; i++) {
-      var photo = photos[i];
-      $('#photo_' + String(photo.photo.id)).live('click', function() {
-        var selected_photo = new SelectedPhotos({ selected_photo: {
-                                                                    photo_id: photo.photo.id
-                                                                  }
-                                                 });
-        selected_photo.$create();
-        self.selected_photos.push(selected_photo);
-        addWatchersToSelectedPhoto(selected_photo);
-      });
+      addWatcherToPhoto(photos[i])
     }
   });
 

@@ -21,9 +21,9 @@ describe Photo do
   describe "#as_json" do
     it "should include the id, title, and image urls" do
       photo = Photo.create!(:image => File.new(Rails.root + 'photos/1_1.jpg'), :title => 'My Photo')
-      photo.as_json['photo']['image_gallery_url'].should == photo.image.url(:gallery)
-      photo.as_json['photo']['image_large_url'].should == photo.image.url(:large)
-      photo.as_json['photo']['image_original_url'].should == photo.image.url(:original)
+      photo.as_json['image_gallery_url'].should == photo.image.url(:gallery)
+      photo.as_json['image_large_url'].should == photo.image.url(:large)
+      photo.as_json['image_original_url'].should == photo.image.url(:original)
     end
   end
 

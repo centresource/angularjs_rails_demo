@@ -8,11 +8,11 @@ class Photo < ActiveRecord::Base
 
   def as_json(options={})
     hash = super(options)
-    hash['photo'].merge!(
-                        'image_gallery_url' => image.url(:gallery),
-                        'image_large_url' => image.url(:large),
-                        'image_original_url' => image.url(:original)
-                        )
+    hash.merge!(
+                'image_gallery_url' => image.url(:gallery),
+                'image_large_url' => image.url(:large),
+                'image_original_url' => image.url(:original)
+                )
     hash
   end
   

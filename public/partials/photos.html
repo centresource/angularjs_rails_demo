@@ -1,12 +1,11 @@
-<h1>The {{gallery.gallery.title}} Gallery of {{photographer.photographer.name}}</h1>
+<h1>The {{gallery.title}} Gallery of {{photographer.name}}</h1>
 
 <div id="selected_frame">
   <div id="selected_photos">
-    <!-- double object names because rails uses the json root to scope params. TODO: figure out how to eliminate the need to do this in angular -->
-    <div class="selected_photo" id="selected_photo_{{selected_photo.selected_photo.id}}" ng:repeat="selected_photo in selected_photos">
-      <img ng:src="{{selected_photo.selected_photo.image_gallery_url}}" alt="{{selected_photo.selected_photo.title}}" />
+    <div class="selected_photo" id="selected_photo_{{selected_photo.id}}" ng:repeat="selected_photo in selected_photos">
+      <img ng:src="{{selected_photo.image_gallery_url}}" alt="{{selected_photo.title}}" />
       <span class="delete">✕</span>
-      <input name="selected_photo.selected_photo.title" value="{{selected_photo.selected_photo.title}}" />
+      <input name="selected_photo.title" value="{{selected_photo.title}}" />
     </div>
   </div>
 </div>
@@ -15,10 +14,9 @@
   <div id="picture_frame">
     <div id="prev">&lsaquo;</div>
     <div id="photos">
-      <!-- double object names because rails uses the json root to scope params. TODO: figure out how to eliminate the need to do this in angular -->
-      <div class="photo" id="photo_{{photo.photo.id}}" ng:repeat="photo in photos">
-        <img ng:src="{{photo.photo.image_large_url}}" alt="{{photo.photo.title}}" />
-        <span class="title">{{photo.photo.title}}</span>
+      <div class="photo" id="photo_{{photo.id}}" ng:repeat="photo in photos">
+        <img ng:src="{{photo.image_large_url}}" alt="{{photo.title}}" />
+        <span class="title">{{photo.title}}</span>
       </div>
     </div>
     <div id="next">&rsaquo;</div>

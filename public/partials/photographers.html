@@ -1,7 +1,6 @@
 <h1>Photographers</h1>
 <ul id="photographers">
   <li class="photographer" ng:repeat="photographer in photographers">
-    <!-- double object names because rails uses the json root to scope params. TODO: figure out how to eliminate the need to do this in angular -->
-    <a href="#/photographers/{{photographer.photographer.id}}/galleries">{{photographer.photographer.name}}</a>
+    <a href="#/photographers/{{photographer.id}}/galleries">{{photographer.name}}</a>
   </li>
 </ul>

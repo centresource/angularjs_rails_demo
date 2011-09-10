@@ -32,9 +32,9 @@ describe SelectedPhoto do
     it "should include the id, title, and image urls" do
       photo = Photo.create!(:image => File.new(Rails.root + 'photos/1_1.jpg'), :title => 'My Photo')
       s = SelectedPhoto.new(:title => 'My Selected Title', :photo => photo)
-      s.as_json['selected_photo']['image_gallery_url'].should == photo.image.url(:gallery)
-      s.as_json['selected_photo']['image_large_url'].should == photo.image.url(:large)
-      s.as_json['selected_photo']['image_original_url'].should == photo.image.url(:original)
+      s.as_json['image_gallery_url'].should == photo.image.url(:gallery)
+      s.as_json['image_large_url'].should == photo.image.url(:large)
+      s.as_json['image_original_url'].should == photo.image.url(:original)
     end
   end
 
