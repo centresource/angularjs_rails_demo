@@ -43,7 +43,7 @@ Wrap Params
 
 Rails 3.1 comes with some useful defaults for working with Angular.js. In earlier versions of Rails, the json representation of an object included the model name as a root element. This could be disabled, but then the params coming back to rails lacked the model-specific sub params.
 
-That is, prior to 3.0, we would have:
+That is, prior to 3.1, we would have:
 
     params = { 'id' => 1, 'controller' => 'my_controller', 'action' => 'my_action', 'real_param_1' => 'a', 'real_param_2' => 'b' }
 
