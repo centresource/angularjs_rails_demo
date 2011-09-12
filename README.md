@@ -39,30 +39,36 @@ Because Rails makes it so easy to run Jasmine unit specs and RSpec (or Cucumber)
 * include the angular.min.js and agular-ie-compat.js files—which you can get from https://github.com/angular/angular-seed/tree/master/app/lib/angular — in vendor/assets/javascripts
 * update src_files—in spec/javascripts/support/jasmine.yml—to list angular in the vendor assets and the application javascript files in app/assets
 
-All of the application-specific javascript files are in app/assets/javascript. The html partials are in public/partials.
+All of the application-specific javascript files are in app/assets/javascripts. The html partials are in app/assets/templates.
 
-Note the following changes to config/environments/production.rb:
+In order for controllers.js to use the html templates from the asset pipeline, we insert the asset names into variables in the document header, and then access those in the route declarations of controllers.js:
 
-  # angular.js change: we need to serve up the templates in public/partials
-  config.serve_static_assets = true
+In app/views/layouts/dynamic.html.erb:
+    
+    <script type="text/javascript">
+      var photographers_template = "<%= asset_path('photographers.html') %>";
+      var galleries_template = "<%= asset_path('galleries.html') %>";
+      var photos_template = "<%= asset_path('photos.html') %>";
+    </script>
+
+In app/assets/javascripts/controllers.js:
+
+    function PhotoGalleryCtrl($route, $xhr) {
+      ...
+      $route.when('/photographers',
+          {template: photographers_template, controller: PhotographersCtrl});
+      
+      $route.when('/photographers/:photographer_id/galleries',
+          {template: galleries_template, controller: GalleriesCtrl});
+      
+      $route.when('/photographers/:photographer_id/galleries/:gallery_id/photos',
+          {template: photos_template, controller: PhotosCtrl});
+
+Note the following change to config/environments/production.rb:
 
   # angular.js change: don't uglify because the HTML templates need to know the names of variables
   # and methods in controller.js
   config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
-
-The first one poses a problem I have not yet figured out how to solve. controllers.js defines templates within routes like so:
-
-
-    $route.when('/photographers',
-        {template: 'partials/photographers.html', controller: PhotographersCtrl});
-
-    $route.when('/photographers/:photographer_id/galleries',
-        {template: 'partials/galleries.html', controller: GalleriesCtrl});
-
-    $route.when('/photographers/:photographer_id/galleries/:gallery_id/photos',
-        {template: 'partials/photos.html', controller: PhotosCtrl});
-
-Note that the template paths are hard-coded. I don't see how to adjust these to match Rails' precompiled hash names, so I've left the partials in public/partials instead of moving them to app/assets. This is what necessitates the 'config.serve_static_assets = true' configuration. Unfortunately, this pulls the partials out of the asset pipeline, forcing one to manage file version numbers manually (eg: template: 'partials/photographers.html?3').
 
 
 Wrap Params

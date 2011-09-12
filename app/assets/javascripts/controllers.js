@@ -36,13 +36,13 @@ function PhotoGalleryCtrl($route, $xhr) {
 
 
   $route.when('/photographers',
-      {template: 'partials/photographers.html', controller: PhotographersCtrl});
+      {template: photographers_template, controller: PhotographersCtrl});
 
   $route.when('/photographers/:photographer_id/galleries',
-      {template: 'partials/galleries.html', controller: GalleriesCtrl});
+      {template: galleries_template, controller: GalleriesCtrl});
 
   $route.when('/photographers/:photographer_id/galleries/:gallery_id/photos',
-      {template: 'partials/photos.html', controller: PhotosCtrl});
+      {template: photos_template, controller: PhotosCtrl});
 
   $route.otherwise({redirectTo: '/photographers'});
  
