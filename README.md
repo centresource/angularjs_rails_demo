@@ -36,7 +36,7 @@ Starting from Scratch
 
 Because Rails makes it so easy to run Jasmine unit specs and RSpec (or Cucumber) integration specs on Javascript apps, we don't need most of the extra stuff that comes with Angular.js. All we need to do is:
 
-* include the angular.min.js and agular-ie-compat.js files—which you can get from https://github.com/angular/angular-seed/tree/master/app/lib/angular—in vendor/assets/javascripts
+* include the angular.min.js and agular-ie-compat.js files—which you can get from https://github.com/angular/angular-seed/tree/master/app/lib/angular — in vendor/assets/javascripts
 * update src_files—in spec/javascripts/support/jasmine.yml—to list angular in the vendor assets and the application javascript files in app/assets
 
 All of the application-specific javascript files are in app/assets/javascript. The html partials are in public/partials.
