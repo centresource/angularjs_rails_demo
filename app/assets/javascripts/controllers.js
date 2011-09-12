@@ -70,7 +70,6 @@ function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
                                              });
     selected_photo.$create(function() {
       self.selected_photos.push(selected_photo);
-      addWatchersToSelectedPhoto(selected_photo);
     });
   }
 
