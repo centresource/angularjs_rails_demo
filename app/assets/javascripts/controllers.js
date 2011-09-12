@@ -63,30 +63,31 @@ function GalleriesCtrl(Galleries, Photographers) {
 function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
   var self = this;
 
-  self.gallery = Galleries.get({photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id});
-  self.photographer = Photographers.get({photographer_id: this.params.photographer_id});
+  self.clickPhoto = function(photo) {
+    var selected_photo = new SelectedPhotos({ selected_photo: {
+                                                                photo_id: photo.id
+                                                              }
+                                             });
+    selected_photo.$create(function() {
+      self.selected_photos.push(selected_photo);
+      addWatchersToSelectedPhoto(selected_photo);
+    });
+  }
 
-  var addWatcherToPhoto = function(photo) {
-    $('#photo_' + String(photo.id)).live('click', function() {
-      var selected_photo = new SelectedPhotos({ selected_photo: {
-                                                                  photo_id: photo.id
-                                                                }
-                                               });
-      selected_photo.$create(function() {
-        self.selected_photos.push(selected_photo);
-        addWatchersToSelectedPhoto(selected_photo);
-      });
-    });
+  self.deleteSelectedPhoto = function(selected_photo) {
+    angular.Array.remove(self.selected_photos, selected_photo);
+    selected_photo.$destroy({selected_photo_id: selected_photo.id});
   }
-  var addWatchersToSelectedPhoto = function(selected_photo) {
-    $('#selected_photo_' + String(selected_photo.id) + ' input').live('blur', function() {
-      selected_photo.$update({ selected_photo_id: selected_photo.id });
-    });
-    $('#selected_photo_' + String(selected_photo.id) + ' .delete').live('click', function() {
-      angular.Array.remove(self.selected_photos, selected_photo);
-      selected_photo.$destroy({selected_photo_id: selected_photo.id});
-    });
+
+  self.saveSelectedPhoto = function(selected_photo) {
+    selected_photo.$update({ selected_photo_id: selected_photo.id });
+    $('input').blur();
   }
+
+
+  self.gallery = Galleries.get({photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id});
+
+  self.photographer = Photographers.get({photographer_id: this.params.photographer_id});
 
   Photos.index({photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id}, function(photos) {
     self.photos = photos;
@@ -98,18 +99,8 @@ function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
                           next: '#next',
                           prev: '#prev'});
     });
-
-    for (var i = 0; i < photos.length; i++) {
-      addWatcherToPhoto(photos[i])
-    }
   });
 
-  SelectedPhotos.index({}, function(selected_photos) {
-    self.selected_photos = selected_photos;
-
-    for (var i = 0; i < selected_photos.length; i++) {
-      addWatchersToSelectedPhoto(selected_photos[i]);
-    }
-  });
+  self.selected_photos = SelectedPhotos.index();
 
 }
