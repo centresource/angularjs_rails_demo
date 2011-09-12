@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.0'
 gem 'paperclip', '2.3.11'
 gem 'rmagick'
-# gem 'jquery-rails'
+gem 'jquery-rails'
 
 gem 'sqlite3'
 

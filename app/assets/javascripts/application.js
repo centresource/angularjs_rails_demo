@@ -1,4 +1,4 @@
-//= require jquery.min
+//= require jquery
 //= require jquery.cycle
 //= require services
 //= require controllers
