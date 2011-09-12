@@ -34,9 +34,13 @@ All json traffic reaches its intended controller/action and renders the object f
 Starting from Scratch
 =====================
 
-Because Rails makes it so easy to run Jasmine unit specs and RSpec (or Cucumber) integration specs on Javascript apps, we don't need most of the extra stuff that comes with Angular.js. All we really need are the angular.js and agular-ie-compat.js files in app/assets/javascripts, which you can get from https://github.com/angular/angular-seed/tree/master/app/lib/angular.
+Because Rails makes it so easy to run Jasmine unit specs and RSpec (or Cucumber) integration specs on Javascript apps, we don't need most of the extra stuff that comes with Angular.js. All we need to do is:
 
-All of the javascript files are in app/assets/javascript. The html partials are in public/partials
+* include the angular.js and agular-ie-compat.js files—which you can get from https://github.com/angular/angular-seed/tree/master/app/lib/angular—in vendor/assets/javascripts
+* update src_files—in spec/javascripts/support/jasmine.yml—to list angular in the vendor assets and the application javascript files in app/assets
+
+All of the application-specific javascript files are in app/assets/javascript. The html partials are in public/partials.
+
 
 Wrap Params
 ===========
