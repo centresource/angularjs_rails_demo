@@ -10,6 +10,7 @@
 
   <ng:view></ng:view>
 
-  <%= javascript_include_tag "angular.min.js#autobind", "application" -%>
+  <script src="/assets/angular.min.js" ng:autobind></script>
+  <%= javascript_include_tag "application" -%>
 </body>
 </html>

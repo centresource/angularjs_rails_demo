@@ -41,6 +41,29 @@ Because Rails makes it so easy to run Jasmine unit specs and RSpec (or Cucumber)
 
 All of the application-specific javascript files are in app/assets/javascript. The html partials are in public/partials.
 
+Note the following changes to config/environments/production.rb:
+
+  # angular.js change: we need to serve up the templates in public/partials
+  config.serve_static_assets = true
+
+  # angular.js change: don't uglify because the HTML templates need to know the names of variables
+  # and methods in controller.js
+  config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
+
+The first one poses a problem I have not yet figured out how to solve. controllers.js defines templates within routes like so:
+
+
+    $route.when('/photographers',
+        {template: 'partials/photographers.html', controller: PhotographersCtrl});
+
+    $route.when('/photographers/:photographer_id/galleries',
+        {template: 'partials/galleries.html', controller: GalleriesCtrl});
+
+    $route.when('/photographers/:photographer_id/galleries/:gallery_id/photos',
+        {template: 'partials/photos.html', controller: PhotosCtrl});
+
+Note that the template paths are hard-coded. I don't see how to adjust these to match Rails' precompiled hash names, so I've left the partials in public/partials instead of moving them to app/assets. This is what necessitates the 'config.serve_static_assets = true' configuration. Unfortunately, this pulls the partials out of the asset pipeline, forcing one to manage file version numbers manually (eg: template: 'partials/photographers.html?3').
+
 
 Wrap Params
 ===========

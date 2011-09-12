@@ -9,10 +9,16 @@ AngularDemo::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  # config.serve_static_assets = false
+  # angular.js change: we need to serve up the templates in public/partials
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
+
+  # angular.js change: don't uglify because the HTML templates need to know the names of variables
+  # and methods in controller.js
+  config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
