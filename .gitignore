@@ -4,4 +4,4 @@ log/*.log
 log/
 tmp/
 .DS_Store
-public/images/photos
+public/system

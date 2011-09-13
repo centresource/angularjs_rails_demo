@@ -9,7 +9,10 @@ AngularDemo::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  # config.serve_static_assets = false
+  # Enable Rails static asset server for this demo so we can serve images
+  # uploaded by Paperclip without tying into S3
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
