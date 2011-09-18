@@ -45,11 +45,13 @@ All json traffic reaches its intended controller/action and renders the object f
 Starting from Scratch
 =====================
 
-Because Rails makes it so easy to run Jasmine unit specs and RSpec (or Cucumber) integration specs on javascript apps, we don't need most of the extra stuff that comes with Angular.js. All we really need are the [angular.min.js and angular-ie-compat.js](https://github.com/angular/angular-seed/tree/master/app/lib/angular) and [angular-mocks.js](https://github.com/angular/angular-seed/tree/master/test/lib/angular).
+Because Rails makes it so easy to run Jasmine unit specs and RSpec (or Cucumber) integration specs on javascript apps, we don't need most of the extra stuff that comes with Angular.js. All we really need are [angular.min.js and angular-ie-compat.js](https://github.com/angular/angular-seed/tree/master/app/lib/angular) and [angular-mocks.js](https://github.com/angular/angular-seed/tree/master/test/lib/angular).
 
-* angular.min.js and angular-ie-compat.js go into vendor/assets/javascripts
-* angular-mocks.js goes into spec/javascripts/helpers
-* (you can of course customize these locations)
+Here are where I put the various files:
+* angular.min.js and angular-ie-compat.js => vendor/assets/javascripts
+* angular-mocks.js => spec/javascripts/helpers
+* controllers.js, services.js, templates.js, and filters.js => app/assets/javascripts.
+* Angular.js partials => app/assets/
 
 In order to use [Jasmine](https://github.com/pivotal/jasmine) for our javascript unit specs, while remaining fully compatible with the asset pipeline, we use the [JasmineRice gem](https://github.com/bradphelan/jasminerice). spec/javascripts/spec.js.coffee is required by JasmineRice. I put my angular-specific javascript specs into spec/javascripts/angular. See spec/javascripts/angular/controllersSpec.js for an example.
 
