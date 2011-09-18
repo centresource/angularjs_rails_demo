@@ -22,7 +22,11 @@ AngularDemo::Application.configure do
   config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  # config.assets.compile = false
+  # The default setting of 'false' resulted in an error during asset precompilation, stating that
+  # "photographers.html isn't precompiled". Changing to 'true' and precompiling
+  # using "rake assets:precompile RAILS_ENV=production" solved the problem
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
