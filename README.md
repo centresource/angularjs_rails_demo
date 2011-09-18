@@ -58,7 +58,7 @@ In order to use [Jasmine](https://github.com/pivotal/jasmine) for our javascript
 
 * spec/javascripts/spec.js.coffee is required by JasmineRice
 * I put my angular-specific javascript specs into spec/javascripts/angular
-* see spec/javascripts/angular/controllersSpec.js for an example.
+* see spec/javascripts/angular/controllersSpec.js for an example
 
 Note the following change to config/environments/production.rb:
 
