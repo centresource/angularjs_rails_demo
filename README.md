@@ -48,6 +48,7 @@ Starting from Scratch
 Because Rails makes it so easy to run Jasmine unit specs and RSpec (or Cucumber) integration specs on javascript apps, we don't need most of the extra stuff that comes with Angular.js. All we really need are [angular.min.js and angular-ie-compat.js](https://github.com/angular/angular-seed/tree/master/app/lib/angular) and [angular-mocks.js](https://github.com/angular/angular-seed/tree/master/test/lib/angular).
 
 Here are where I put the various files:
+
 * angular.min.js and angular-ie-compat.js => vendor/assets/javascripts
 * angular-mocks.js => spec/javascripts/helpers
 * controllers.js, services.js, templates.js, and filters.js => app/assets/javascripts.
