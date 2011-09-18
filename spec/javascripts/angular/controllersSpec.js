@@ -1,14 +1,14 @@
+#= require jquery
+#= require angular.min
+#= require helpers/angular-mocks
+#= require services
+#= require controllers
+
 /* jasmine specs for controllers go here */
 describe('AngularDemo controllers', function() {
   var scope, $browser, ctrl;
 
   beforeEach(function() {
-    // mock $ because we don't have a DOM in unit tests
-    // (loading jQuery resulted in Uncaught RangeError: Maximum call stack size exceeded)
-    $ = function() {
-        return { live: function() {},
-                 attr: function() {} };
-    };
     scope = angular.scope();
     $browser = scope.$service('$browser');
 
@@ -17,7 +17,7 @@ describe('AngularDemo controllers', function() {
         return angular.equals(this.actual, expected);
       }
     });
- });
+  });
 
   describe('PhotographersCtrl', function() {
 

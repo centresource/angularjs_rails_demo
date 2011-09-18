@@ -18,10 +18,11 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'jasmine'
+  gem 'jasminerice'
 end
 
 group :test do
-  gem 'jasmine'
   gem 'capybara', '1.0.0'
   gem 'launchy'
   gem 'spork', '~> 0.9.0.rc2'
