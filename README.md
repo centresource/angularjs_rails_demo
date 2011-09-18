@@ -1,7 +1,7 @@
 Angular.js in Rails
 ================
 
-This demo includes a fully working Rails 3.1 app integrated with Angular.js (http://angularjs.org/). It uses the Jasmine and JasmineRice gems to run the Angular.js unit specs and RSpec integration specs to test the fully functional app.
+This demo includes a fully working Rails 3.1 app integrated with [Angular.js](http://angularjs.org/). It uses the Jasmine and JasmineRice gems to run the Angular.js unit specs and RSpec integration specs to test the fully functional app.
 
 The purpose of this demo is to assist anyone looking to incorporate Angular.js into Rails, as well as anyone trying to decide which javascript framework to use with Rails. 
 
@@ -18,7 +18,7 @@ Installing
     $ rake db:migrate
     $ rake db:seed
 
-To run the unit specs (using jasminrice—https://github.com/bradphelan/jasminerice):
+To run the unit specs (using [jasminrice](https://github.com/bradphelan/jasminerice)):
 
     $ rails s
     Then direct a browser to http://localhost:3000/jasmine
@@ -45,13 +45,13 @@ All json traffic reaches its intended controller/action and renders the object f
 Starting from Scratch
 =====================
 
-Because Rails makes it so easy to run Jasmine unit specs and RSpec (or Cucumber) integration specs on javascript apps, we don't need most of the extra stuff that comes with Angular.js. All we really need are the angular.min.js and angular-ie-compat.js (https://github.com/angular/angular-seed/tree/master/app/lib/angular) and angular-mocks.js (https://github.com/angular/angular-seed/tree/master/test/lib/angular).
+Because Rails makes it so easy to run Jasmine unit specs and RSpec (or Cucumber) integration specs on javascript apps, we don't need most of the extra stuff that comes with Angular.js. All we really need are the [angular.min.js and angular-ie-compat.js](https://github.com/angular/angular-seed/tree/master/app/lib/angular) and [angular-mocks.js](https://github.com/angular/angular-seed/tree/master/test/lib/angular).
 
 * angular.min.js and angular-ie-compat.js go into vendor/assets/javascripts
 * angular-mocks.js goes into spec/javascripts/helpers
 * (you can of course customize these locations)
 
-In order to use Jasmine for our javascript unit specs, while remaining fully compatible with the asset pipeline, we use the JasmineRice gem (https://github.com/bradphelan/jasminerice). spec/javascripts/spec.js.coffee is required by JasmineRice. I put my angular-specific javascript specs into spec/javascripts/angular. See spec/javascripts/angular/controllersSpec.js for an example.
+In order to use [Jasmine](https://github.com/pivotal/jasmine) for our javascript unit specs, while remaining fully compatible with the asset pipeline, we use the [JasmineRice gem](https://github.com/bradphelan/jasminerice). spec/javascripts/spec.js.coffee is required by JasmineRice. I put my angular-specific javascript specs into spec/javascripts/angular. See spec/javascripts/angular/controllersSpec.js for an example.
 
 Note the following change to config/environments/production.rb:
 
@@ -81,4 +81,4 @@ Thanks to wrap_parameters in 3.1, we have:
 
     params = { 'id' => 1, 'controller' => 'my_controller', 'action' => 'my_action', 'my_model' => { 'real_param_1' => 'a', 'real_param_2' => 'b' } }
 
-The only downside to wrap_parameters is that it builds itself from the database schema, not from attr_accessible, so if you have attributes that don't correspond to the database, you will have to list them not only in attr_accessible, but also in the controller. See http://api.rubyonrails.org/classes/ActionController/ParamsWrapper/ClassMethods.html for details on how to customize what is passed.
+The only downside to wrap_parameters is that it builds itself from the database schema, not from attr_accessible, so if you have attributes that don't correspond to the database, you will have to list them not only in attr_accessible, but also in the controller. See [http://api.rubyonrails.org/classes/ActionController/ParamsWrapper/ClassMethods.html](http://api.rubyonrails.org/classes/ActionController/ParamsWrapper/ClassMethods.html) for details on how to customize what is passed.
