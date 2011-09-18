@@ -54,7 +54,11 @@ Here are where I put the various files:
 * controllers.js, services.js, templates.js, and filters.js => app/assets/javascripts.
 * Angular.js partials => app/assets/
 
-In order to use [Jasmine](https://github.com/pivotal/jasmine) for our javascript unit specs, while remaining fully compatible with the asset pipeline, we use the [JasmineRice gem](https://github.com/bradphelan/jasminerice). spec/javascripts/spec.js.coffee is required by JasmineRice. I put my angular-specific javascript specs into spec/javascripts/angular. See spec/javascripts/angular/controllersSpec.js for an example.
+In order to use [Jasmine](https://github.com/pivotal/jasmine) for our javascript unit specs, while remaining fully compatible with the asset pipeline, we use the [JasmineRice gem](https://github.com/bradphelan/jasminerice).
+
+* spec/javascripts/spec.js.coffee is required by JasmineRice
+* I put my angular-specific javascript specs into spec/javascripts/angular
+* see spec/javascripts/angular/controllersSpec.js for an example.
 
 Note the following change to config/environments/production.rb:
 
