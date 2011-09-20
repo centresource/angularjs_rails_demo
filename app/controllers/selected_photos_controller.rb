@@ -17,7 +17,7 @@ class SelectedPhotosController < ApplicationController
 
   def update
     @selected_photo.update_attributes(params[:selected_photo])
-    render(:json => @selected_photo)
+    respond_with @selected_photo
   end
 
   def show
