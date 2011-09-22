@@ -32,12 +32,29 @@ function PhotographersCtrl(Photographers) {
 }
 
 function GalleriesCtrl(Galleries, Photographers) {
-  this.galleries = Galleries.index({photographer_id: this.params.photographer_id});
-  this.photographer = Photographers.get({photographer_id: this.params.photographer_id});
+  this.galleries = Galleries.index({ photographer_id: this.params.photographer_id });
+  this.photographer = Photographers.get({ photographer_id: this.params.photographer_id });
 }
 
 function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
   var self = this;
+
+  self.photographer = Photographers.get({ photographer_id: this.params.photographer_id });
+  self.gallery = Galleries.get({ photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id });
+  self.selected_photos = SelectedPhotos.index();
+
+  Photos.index({ photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id }, function(photos) {
+    self.photos = photos;
+    APP.Helpers.forceRender(function() {
+      $('#photos').cycle({fx: 'fade',
+                          speed: 500,
+                          timeout: 3000,
+                          pause: 1,
+                          next: '#next',
+                          prev: '#prev'});
+    });
+  });
+
 
   self.clickPhoto = function(photo) {
     var selected_photo = new SelectedPhotos({ selected_photo: {
@@ -51,32 +68,13 @@ function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
 
   self.deleteSelectedPhoto = function(selected_photo) {
     angular.Array.remove(self.selected_photos, selected_photo);
-    selected_photo.$destroy({selected_photo_id: selected_photo.id});
+    selected_photo.$destroy({ selected_photo_id: selected_photo.id });
   }
 
   self.saveSelectedPhoto = function(selected_photo) {
     selected_photo.$update({ selected_photo_id: selected_photo.id });
     $('input').blur();
   }
-
-
-  self.gallery = Galleries.get({photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id});
-
-  self.photographer = Photographers.get({photographer_id: this.params.photographer_id});
-
-  Photos.index({photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id}, function(photos) {
-    self.photos = photos;
-    APP.Helpers.forceRender(function() {
-      $('#photos').cycle({fx: 'fade', 
-                          speed: 500,
-                          timeout: 3000,
-                          pause: 1,
-                          next: '#next',
-                          prev: '#prev'});
-    });
-  });
-
-  self.selected_photos = SelectedPhotos.index();
 
 }
 
