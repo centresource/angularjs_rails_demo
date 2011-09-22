@@ -7,21 +7,21 @@ class SelectedPhotosController < ApplicationController
   respond_to :json
 
   def index
-    respond_with @selected_photos
+    render(:json => @selected_photos)
   end
 
   def create
     @selected_photo.save
-    respond_with @selected_photo
+    render(:json => @selected_photo)
   end
 
   def update
     @selected_photo.update_attributes(params[:selected_photo])
-    respond_with @selected_photo
+    render(:json => @selected_photo)
   end
 
   def show
-    respond_with @selected_photo
+    render(:json => @selected_photo)
   end
 
   def destroy
