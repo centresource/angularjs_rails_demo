@@ -2,7 +2,7 @@
 
 <div id="selected_frame">
   <div id="selected_photos">
-    <div class="selected_photo" id="selected_photo_{{selected_photo.id}}" ng:repeat="selected_photo in selected_photos">
+    <div class="selected_photo" ng:repeat="selected_photo in selected_photos">
       <img ng:src="{{selected_photo.image_gallery_url}}" alt="{{selected_photo.title}}" />
       <span class="delete" ng:click="deleteSelectedPhoto(selected_photo)">✕</span>
       <form ng:submit="saveSelectedPhoto(selected_photo)">
@@ -15,8 +15,8 @@
 <div id="outer_picture_frame">
   <div id="picture_frame">
     <div id="prev">&lsaquo;</div>
-    <div id="photos">
-      <div class="photo" id="photo_{{photo.id}}" ng:click="clickPhoto(photo)" ng:repeat="photo in photos">
+    <div id="photos" my:cycle>
+      <div class="photo" id="photo_{{photo.id}}" ng:click="selectPhoto(photo)" ng:repeat="photo in photos">
         <img ng:src="{{photo.image_large_url}}" alt="{{photo.title}}" />
         <span class="title">{{photo.title}}</span>
       </div>
