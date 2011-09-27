@@ -19,7 +19,7 @@ angular.directive("my:cycle", function(expr,el){
         }
 
         var defer = this.$service("$defer");
-        scope.$parent.$onEval( function() {
+        scope.$onEval( function() {
             defer(doIt);
         });
    }
