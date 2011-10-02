@@ -32,8 +32,8 @@ function PhotographersCtrl(Photographers) {
 }
 
 function GalleriesCtrl(Galleries, Photographers) {
-  this.galleries = Galleries.index({ photographer_id: this.params.photographer_id });
   this.photographer = Photographers.get({ photographer_id: this.params.photographer_id });
+  this.galleries = Galleries.index({ photographer_id: this.params.photographer_id });
 }
 
 function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
