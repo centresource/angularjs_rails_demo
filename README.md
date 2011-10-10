@@ -7,6 +7,10 @@ The purpose of this demo is to assist anyone looking to incorporate Angular.js i
 
 In order to remain accessible to a more general audience I have opted to use javascript, rather than coffeescript. However, the asset pipeline is fully functional (as evidenced by the controllers.js.erb file), and coffeescript can be substituted for any of the javascript specs or assets.
 
+Here is a two part video that goes into detail about how to incorporate Angular.js into Rails 3.1, using this project as an example:
+[Part I](http://vimeo.com/30328747) gives some background about why we need a javascript framework in the first place.
+[Part 2](http://vimeo.com/30329977) dives into this demo application, including detailed explanation of Angular.js controllers, resources, and templates, as well as where the files reside in the Rails 3.1 file hierarchy.
+
 
 Installing
 ==========
