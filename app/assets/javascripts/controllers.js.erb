@@ -8,7 +8,7 @@ function PhotoGalleryCtrl($route, $xhr) {
   var token = $("meta[name='csrf-token']").attr("content");
   $xhr.defaults.headers.post['X-CSRF-Token'] = token;
   $xhr.defaults.headers.put['X-CSRF-Token'] = token;
-  $xhr.defaults.headers.delete['X-CSRF-Token'] = token;
+  $xhr.defaults.headers['delete']['X-CSRF-Token'] = token;
 
 
   $route.when('/photographers',
