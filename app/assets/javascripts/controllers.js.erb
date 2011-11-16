@@ -22,15 +22,18 @@ function PhotoGalleryCtrl($route, $xhr) {
 
   $route.otherwise({redirectTo: '/photographers'});
 }
+PhotoGalleryCtrl.$inject = ['$route', '$xhr'];
 
 function PhotographersCtrl(Photographers) {
   this.photographers = Photographers.index();
 }
+PhotographersCtrl.$inject = ['Photographers'];
 
 function GalleriesCtrl(Galleries, Photographers, $routeParams) {
   this.photographer = Photographers.get({ photographer_id: $routeParams.photographer_id });
   this.galleries = Galleries.index({ photographer_id: $routeParams.photographer_id });
 }
+GalleriesCtrl.$inject =  ['Galleries', 'Photographers', '$routeParams'];
 
 function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos, $routeParams) {
   var self = this;
@@ -59,5 +62,4 @@ function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos, $routePara
   }
 
 }
-
-
+PhotosCtrl.$inject = ['Photos', 'Galleries', 'Photographers', 'SelectedPhotos', '$routeParams'];
