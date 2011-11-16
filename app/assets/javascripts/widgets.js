@@ -2,7 +2,6 @@
 
 angular.directive("my:cycle", function(expr,el){
    return function(container){
-        var scope = this;
         var lastChildID = container.children().last().attr('id');
 
         var doIt = function() {
@@ -19,7 +18,7 @@ angular.directive("my:cycle", function(expr,el){
         }
 
         var defer = this.$service("$defer");
-        scope.$onEval( function() {
+        this.$onEval( function() {
             defer(doIt);
         });
    }
