@@ -6,12 +6,12 @@
 
 /* jasmine specs for controllers go here */
 describe('AngularDemo controllers', function() {
-  var scope, $browser, $location, ctrl;
+  var scope, $browser, $routeParams, ctrl;
 
   beforeEach(function() {
     scope = angular.scope();
     $browser = scope.$service('$browser');
-    $location = scope.$service('$location');
+    $routeParams = scope.$service('$routeParams');
 
     this.addMatchers({
       toEqualData: function(expected) {
@@ -42,13 +42,12 @@ describe('AngularDemo controllers', function() {
   describe('GalleriesCtrl', function() {
 
     it('should create a "photographers" model and a "galleries" array using data fetched from xhr for the current photographer', function() {
+      $routeParams.photographer_id = 3;
 
       $browser.xhr.expectGET('photographers/3').respond({name: 'Anne Geddes'});
       $browser.xhr.expectGET('photographers/3/galleries').respond([{title: 'Ghost Ranch'}]);
 
-      ctrl = scope.$new(PhotoGalleryCtrl).$new(GalleriesCtrl);
-      $location.path('/photographers/3/galleries');
-      scope.$digest();
+      ctrl = scope.$new(GalleriesCtrl);
  
       expect(ctrl.photographer).toEqualData({});
       expect(ctrl.galleries).toEqualData([]);
@@ -64,15 +63,15 @@ describe('AngularDemo controllers', function() {
   describe('PhotosCtrl', function() {
 
     it('should create a "photographers" model, a "gallery" model, and a "photos" array using data fetched from xhr for the current photographer and gallery', function() {
+      $routeParams.photographer_id = 3;
+      $routeParams.gallery_id = 7;
 
       $browser.xhr.expectGET('photographers/3').respond({name: 'Anne Geddes'});
       $browser.xhr.expectGET('photographers/3/galleries/7').respond({title: 'Ghost Ranch'});
       $browser.xhr.expectGET('photographers/3/galleries/7/photos').respond([{title: 'My Photo', url: 'http://example.com/my_photo.jpg'}]);
       $browser.xhr.expectGET('selected_photos').respond([{title: 'My Selected Photo', id: 12}]);
 
-      ctrl = scope.$new(PhotoGalleryCtrl).$new(GalleriesCtrl);
-      $location.path('/photographers/3/galleries/7');
-      scope.$digest();
+      ctrl = scope.$new(PhotosCtrl);
 
       $browser.xhr.flush();
  
