@@ -70,20 +70,6 @@ In order to use [Jasmine](https://github.com/pivotal/jasmine) for our javascript
 * I put my angular-specific javascript specs into spec/javascripts/angular
 * see spec/javascripts/angular/controllersSpec.js for an example
 
-Note the following change to config/environments/production.rb:
-
-    # angular.js change: don't uglify because the HTML templates need to know the names of variables
-    # and methods in controller.js
-    config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
-    
-    # Don't fallback to assets pipeline if a precompiled asset is missed
-    # config.assets.compile = false
-    # The default setting of 'false' resulted in an error during asset precompilation, stating that
-    # "photographers.html isn't precompiled". Changing to 'true' and precompiling
-    # using "rake assets:precompile RAILS_ENV=production" solved the problem
-    config.assets.compile = true
-
-
 
 Wrap Params
 ===========
