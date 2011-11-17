@@ -3,6 +3,8 @@ Note: Updated to AngularJS 0.10 branch
 
 The documentation for the AngularJS 0.10 branch is at [http://docs-next.angularjs.org/](http://docs-next.angularjs.org/). The AngularJS changelog is at [https://github.com/angular/angular.js/blob/master/CHANGELOG.md](https://github.com/angular/angular.js/blob/master/CHANGELOG.md).
 
+There is currently an error with jQuery cycle in production. I'm trying to figure out what, in the asset pipeline, is causing the problem, but thus far without success.
+
 Angular.js in Rails
 ================
 
@@ -70,6 +72,11 @@ In order to use [Jasmine](https://github.com/pivotal/jasmine) for our javascript
 * I put my angular-specific javascript specs into spec/javascripts/angular
 * see spec/javascripts/angular/controllersSpec.js for an example
 
+
+Note the following change to config/environments/production.rb:
+
+    # angular.js change: uglifying was causing problems. not sure why
+    config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
 
 Wrap Params
 ===========

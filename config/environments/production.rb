@@ -17,9 +17,8 @@ AngularDemo::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
-  # angular.js change: don't uglify because the HTML templates need to know the names of variables
-  # and methods in controller.js
-  # config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
+  # angular.js change: uglifying was causing problems. not sure why
+  config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
