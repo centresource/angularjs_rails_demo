@@ -42,13 +42,13 @@ describe('AngularDemo controllers', function() {
   describe('GalleriesCtrl', function() {
 
     it('should create a "photographers" model and a "galleries" array using data fetched from xhr for the current photographer', function() {
-      $location.path('/photographers/3/galleries');
-      scope.$digest();
 
       $browser.xhr.expectGET('photographers/3').respond({name: 'Anne Geddes'});
       $browser.xhr.expectGET('photographers/3/galleries').respond([{title: 'Ghost Ranch'}]);
 
-      ctrl = scope.$new(GalleriesCtrl);
+      ctrl = scope.$new(PhotoGalleryCtrl).$new(GalleriesCtrl);
+      $location.path('/photographers/3/galleries');
+      scope.$digest();
  
       expect(ctrl.photographer).toEqualData({});
       expect(ctrl.galleries).toEqualData([]);
@@ -64,16 +64,16 @@ describe('AngularDemo controllers', function() {
   describe('PhotosCtrl', function() {
 
     it('should create a "photographers" model, a "gallery" model, and a "photos" array using data fetched from xhr for the current photographer and gallery', function() {
-      $location.path('/photographers/3/galleries/7');
-      scope.$digest();
 
       $browser.xhr.expectGET('photographers/3').respond({name: 'Anne Geddes'});
       $browser.xhr.expectGET('photographers/3/galleries/7').respond({title: 'Ghost Ranch'});
       $browser.xhr.expectGET('photographers/3/galleries/7/photos').respond([{title: 'My Photo', url: 'http://example.com/my_photo.jpg'}]);
       $browser.xhr.expectGET('selected_photos').respond([{title: 'My Selected Photo', id: 12}]);
 
-      ctrl = scope.$new(PhotosCtrl);
- 
+      ctrl = scope.$new(PhotoGalleryCtrl).$new(GalleriesCtrl);
+      $location.path('/photographers/3/galleries/7');
+      scope.$digest();
+
       $browser.xhr.flush();
  
       expect(ctrl.photographer).toEqualData({name: 'Anne Geddes'});
