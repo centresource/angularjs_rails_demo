@@ -20,7 +20,7 @@
       <img ng:src="{{selected_photo.image_gallery_url}}" alt="{{selected_photo.title}}" />
       <span class="delete" ng:click="deleteSelectedPhoto(selected_photo)">✕</span>
       <form ng:submit="saveSelectedPhoto(selected_photo)">
-        <input name="selected_photo.title" value="{{selected_photo.title}}" />
+        <input ng:model='selected_photo.title' />
       </form>
     </div>
   </div>

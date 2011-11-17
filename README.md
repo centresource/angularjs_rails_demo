@@ -1,3 +1,8 @@
+Note: Updated to AngularJS 0.10 branch
+===============================
+
+The documentation for the AngularJS 0.10 branch is at [http://docs-next.angularjs.org/](http://docs-next.angularjs.org/). The AngularJS changelog is at [https://github.com/angular/angular.js/blob/master/CHANGELOG.md](https://github.com/angular/angular.js/blob/master/CHANGELOG.md).
+
 Angular.js in Rails
 ================
 

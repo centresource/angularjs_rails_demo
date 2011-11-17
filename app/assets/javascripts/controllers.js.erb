@@ -21,27 +21,26 @@ function PhotoGalleryCtrl($route, $xhr) {
       {template: '<%= asset_path("photos.html") %>', controller: PhotosCtrl});
 
   $route.otherwise({redirectTo: '/photographers'});
- 
-  $route.onChange(function() {
-    this.params = $route.current.params;
-  });
 }
+PhotoGalleryCtrl.$inject = ['$route', '$xhr'];
 
 function PhotographersCtrl(Photographers) {
   this.photographers = Photographers.index();
 }
+PhotographersCtrl.$inject = ['Photographers'];
 
-function GalleriesCtrl(Galleries, Photographers) {
-  this.photographer = Photographers.get({ photographer_id: this.params.photographer_id });
-  this.galleries = Galleries.index({ photographer_id: this.params.photographer_id });
+function GalleriesCtrl(Galleries, Photographers, $routeParams) {
+  this.photographer = Photographers.get({ photographer_id: $routeParams.photographer_id });
+  this.galleries = Galleries.index({ photographer_id: $routeParams.photographer_id });
 }
+GalleriesCtrl.$inject =  ['Galleries', 'Photographers', '$routeParams'];
 
-function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
+function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos, $routeParams) {
   var self = this;
 
-  self.photographer = Photographers.get({ photographer_id: this.params.photographer_id });
-  self.gallery = Galleries.get({ photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id });
-  self.photos = Photos.index({ photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id });
+  self.photographer = Photographers.get({ photographer_id: $routeParams.photographer_id });
+  self.gallery = Galleries.get({ photographer_id: $routeParams.photographer_id, gallery_id: $routeParams.gallery_id });
+  self.photos = Photos.index({ photographer_id: $routeParams.photographer_id, gallery_id: $routeParams.gallery_id });
   self.selected_photos = SelectedPhotos.index();
 
 
@@ -63,5 +62,4 @@ function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
   }
 
 }
-
-
+PhotosCtrl.$inject = ['Photos', 'Galleries', 'Photographers', 'SelectedPhotos', '$routeParams'];
