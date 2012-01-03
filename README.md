@@ -75,7 +75,7 @@ In order to use [Jasmine](https://github.com/pivotal/jasmine) for our javascript
 
 Note the following change to config/environments/production.rb:
 
-    # angular.js change: uglifying was causing problems. not sure why
+    # AngularJS change: [uglifying breaks AngularJS](http://groups.google.com/group/angular/browse_thread/thread/c1740992a86adde2)
     config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
 
 Wrap Params
