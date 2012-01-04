@@ -73,7 +73,7 @@ In order to use [Jasmine](https://github.com/pivotal/jasmine) for our javascript
 * see spec/javascripts/angular/controllersSpec.js for an example
 
 
-Note the following change to config/environments/production.rb ([uglifying breaks the current version of AngularJS](http://groups.google.com/group/angular/browse_thread/thread/c1740992a86adde2)):
+The current code relies on the following change to config.assets, but I misunderstood how dependency injection worked to create a $resource service. Check out [this thread](http://groups.google.com/group/angular/browse_thread/thread/c1740992a86adde2) for the answer (posted by Vojta). I want to get around to fixing this, but just don't have the time right now.
 
     # AngularJS change:
     config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
