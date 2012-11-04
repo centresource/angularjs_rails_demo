@@ -26,9 +26,7 @@ Installing
     $ git clone git@github.com:centresource/angularjs_rails_demo.git
     $ cd angularjs_rails_demo
     $ bundle install
-    $ rake db:migrate RAILS_ENV=test
-    $ rake db:migrate
-    $ rake db:seed
+    $ rake db:migrate db:seed db:test:prepare
 
 To run the unit specs (using [jasminrice](https://github.com/bradphelan/jasminerice)):
 
