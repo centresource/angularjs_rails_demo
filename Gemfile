@@ -12,6 +12,7 @@ gem 'sqlite3'
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
+  gem 'underscore-rails'
   gem 'uglifier'
 end
 
@@ -20,12 +21,11 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'jasmine'
   gem 'jasminerice'
+  gem 'pry'
 end
 
 group :test do
-  gem 'capybara', '1.0.0'
+  gem 'capybara'
   gem 'launchy'
-  gem 'spork', '~> 0.9.0.rc2'
   gem 'database_cleaner'
 end
-
