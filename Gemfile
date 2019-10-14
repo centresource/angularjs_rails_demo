@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails'
-gem 'paperclip', '2.3.11'
+gem 'paperclip', '4.2.2'
 gem 'rmagick'
 gem 'jquery-rails'
 
